@@ -1,0 +1,20 @@
+asgiref @ file:///tmp/build/80754af9/asgiref_1602513567813/work
+boto3==1.9.66
+botocore==1.12.67
+certifi==2020.6.20
+cffi @ file:///opt/concourse/worker/volumes/live/e2eb91c2-780d-4f74-545d-c2827857ffe3/volume/cffi_1600699193708/work
+cryptography @ file:///opt/concourse/worker/volumes/live/c92b6573-5445-4a21-4a76-9af93cc67a5e/volume/cryptography_1601046836410/work
+Django @ file:///tmp/build/80754af9/django_1601563330930/work
+docutils==0.16
+idna @ file:///tmp/build/80754af9/idna_1593446292537/work
+jmespath @ file:///tmp/build/80754af9/jmespath_1594304593830/work
+psycopg2 @ file:///opt/concourse/worker/volumes/live/f70b797f-1fea-4855-7694-330b8c27138c/volume/psycopg2_1594305349650/work
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1594392929924/work
+PySocks==1.7.1
+python-dateutil==2.8.1
+pytz==2020.1
+s3transfer==0.1.13
+six==1.15.0
+sqlparse @ file:///tmp/build/80754af9/sqlparse_1602184451250/work
+urllib3==1.24.3
