@@ -1,4 +1,4 @@
-"""IS5009 URL Configuration
+"""
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -15,15 +15,4 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from dashboard import views
 from django.views.generic import TemplateView
-
-urlpatterns = [
-    path('dashboard/', views.DashboardView, name='dashboard'),
-    path('choose_fund/', views.ChooseFundView, name='choose_fund'),
-    path('general_fund/', views.GeneralFundView, name='general_fund'),
-    path('tech_fund/', views.TechFundView, name='tech_fund'),
-    path('login/', views.LoginView, name='login'),
-    path('fund-invest/', views.FundInvestView, name='fund-invest'),
-    path('admin/', admin.site.urls),
-]
