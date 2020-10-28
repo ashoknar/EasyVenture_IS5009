@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from dashboard import views
 from django.views.generic import TemplateView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('dashboard/', views.DashboardView.as_view(), name='dashboard'),
@@ -33,4 +35,4 @@ urlpatterns = [
     path('fund_invest/cash/success/', views.FundSuccessView.as_view(), name='fund-invest-success'),
     path('fund_invest/crypto/', views.FundCryptoView.as_view(), name='fund-invest-crypto'),
     path('admin/', admin.site.urls),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
