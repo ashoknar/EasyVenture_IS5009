@@ -31,3 +31,24 @@ class LoginView(TemplateView):
 
 class FundInvestView(TemplateView):
     template_name = "dashboard/fund-invest.html"
+
+
+class FundCashView(TemplateView):
+    template_name = "dashboard/fund-invest-cash.html"
+
+
+class FundCashSummaryView(TemplateView):
+    template_name = "dashboard/fund-invest-cash-summary.html"
+
+
+class FundCryptoView(TemplateView):
+    template_name = "dashboard/fund-invest-crypto.html"
+
+
+class FundOTPView(TemplateView):
+    template_name = "dashboard/fund-invest-otp.html"
+
+
+class FundSuccessView(TemplateView):
+    template_name = "dashboard/fund-invest-success.html"
+

@@ -24,6 +24,11 @@ urlpatterns = [
     path('general_fund/', views.GeneralFundView.as_view(), name='general_fund'),
     path('tech_fund/', views.TechFundView.as_view(), name='tech_fund'),
     path('login/', views.LoginView.as_view(), name='login'),
-    path('fund-invest/', views.FundInvestView.as_view(), name='fund-invest'),
+    path('fund_invest/', views.FundInvestView.as_view(), name='fund-invest'),
+    path('fund_invest/cash/', views.FundCashView.as_view(), name='fund-invest-cash'),
+    path('fund_invest/cash/summary/', views.FundCashSummaryView.as_view(), name='fund-invest-cash-summary'),
+    path('fund_invest/cash/otp/', views.FundOTPView.as_view(), name='fund-invest-otp'),
+    path('fund_invest/cash/success/', views.FundSuccessView.as_view(), name='fund-invest-success'),
+    path('fund_invest/crypto/', views.FundCryptoView.as_view(), name='fund-invest-crypto'),
     path('admin/', admin.site.urls),
 ]
