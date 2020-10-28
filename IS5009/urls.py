@@ -20,8 +20,10 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('dashboard/', views.DashboardView.as_view(), name='dashboard'),
+    path('dashboard_new/', views.DashboardNewView.as_view(), name='dashboard-new'),
     path('choose_fund/', views.ChooseFundView.as_view(), name='choose_fund'),
     path('general_fund/', views.GeneralFundView.as_view(), name='general_fund'),
+    path('health_fund/', views.HealthFundView.as_view(), name='health_fund'),
     path('tech_fund/', views.TechFundView.as_view(), name='tech_fund'),
     path('login/', views.LoginView.as_view(), name='login'),
     path('fund_invest/', views.FundInvestView.as_view(), name='fund-invest'),

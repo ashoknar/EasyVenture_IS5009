@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 # import boto3
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 
 
@@ -17,10 +18,14 @@ class TechFundView(TemplateView):
     template_name = "dashboard/tech_fund.html"
 
 
+class HealthFundView(TemplateView):
+    template_name = "dashboard/health_fund.html"
+
+
 class ChooseFundView(TemplateView):
     template_name = "dashboard/choose_fund.html"
 
-
+@csrf_exempt
 class FundInvestView(TemplateView):
     template_name = "dashboard/fund-invest.html"
 
@@ -52,3 +57,6 @@ class FundOTPView(TemplateView):
 class FundSuccessView(TemplateView):
     template_name = "dashboard/fund-invest-success.html"
 
+
+class DashboardNewView(TemplateView):
+    template_name = "dashboard/index-new.html"

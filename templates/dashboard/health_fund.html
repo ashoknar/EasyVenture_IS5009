@@ -10,14 +10,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>EasyVenture - Dashboard</title>
+  <title>EasyVenture - Invest</title>
 
   <!-- Custom fonts for this template-->
-  <link href="{% static "/dashboard/vendor/fontawesome-free/css/all.min.css" %}" rel="stylesheet" type="text/css">
+  <link href="{% static "dashboard/vendor/fontawesome-free/css/all.min.css" %}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="{% static "/dashboard/css/sb-admin-2.min.css" %}" rel="stylesheet">
+  <link href="{% static "dashboard/css/sb-admin-2.min.css" %}" rel="stylesheet">
 
 </head>
 
@@ -30,7 +30,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../general_fund/index.html">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -41,8 +41,8 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+      <li class="nav-item">
+        <a class="nav-link" href="../general_fund/index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -51,7 +51,7 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Invest -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="invest.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Invest</span></a>
@@ -275,166 +275,71 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-          </div>
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-7 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-7 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Top Invested Fund</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">General Venture Fund</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Recommended Fund</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Healthcare Venture Fund</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+{#          <div class="d-sm-flex align-items-center justify-content-between mb-4">#}
+{#            <h1 class="h3 mb-0 text-gray-800">Invest</h1>#}
+{#          </div>#}
 
           <!-- Content Row -->
 
           <div class="row">
+      <!-- /.col-lg-3 -->
 
-            <!-- Area Chart -->
-            <div class="col-xl-12 col-lg-7">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Holdings Overview</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                </div>
-              </div>
+        <div class="col-xl-12 col-lg-7">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">Healthcare Venture Fund</h6>
+            </div>
+
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="myAreaChart"></canvas>
             </div>
           </div>
+          <div class="card-body">
+            <h3 class="card-title">Healthcare Venture Fund</h3>
+              <p><input type="button" value="Invest" class="btn btn-primary btn-user" onclick="window.location.href='/fund_invest/cash/'" style="width:100px"></p>
+            <h4>$333.32/unit</h4>
+            <p class="card-text">Investment in Healthcare sector focusing on early stage seed to series A. The fund focuses largely on investing in South East Asia market with potential investment in other APAC regions.</p>
+            Rating: <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+          </div>
 
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Content Column -->
-            <div class="col-lg-3 mb-4">
-              <!-- Project Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">General Venture Fund</h6>
-                </div>
-                <div class="card-body">
-                  <h4 class="small font-weight-bold">Holdings: $100,000 <span class="float-right text-success">+20%</span></h4>
-                  <h4 class="small font-weight-bold">Market Value: $120,000 </h4>
-                </div>
-              </div>
+        <div class="card-deck">
+          <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Fund Target</div>
+            <div class="card-body">
+              <h3 class="card-text">$5,000,000</h3>
             </div>
-
-            <!-- Content Column -->
-            <div class="col-lg-3 mb-4">
-              <!-- Project Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Technology Venture Fund</h6>
-                </div>
-                <div class="card-body">
-                  <h4 class="small font-weight-bold">Holdings: $100,000 <span class="float-right text-gray-500">-</span></h4>
-                  <h4 class="small font-weight-bold">Market Value: $100,000 </h4>
-                </div>
-              </div>
+          </div>
+          <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Holding Period</div>
+            <div class="card-body">
+              <h3 class="card-text">3 Years</h3>
             </div>
-
-            <!-- Content Column -->
-            <div class="col-lg-3 mb-4">
-              <!-- Project Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Healthcare Venture Fund</h6>
-                </div>
-                <div class="card-body">
-                  <h4 class="small font-weight-bold">Holdings: $100,000 <span class="float-right text-gray-500">Pending</span></h4>
-                  <h4 class="small font-weight-bold">Market Value: $100,000 <span class="float-right text-gray-500">Transaction</span></h4>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
+        <div class="card-deck">
+          <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Management Firm</div>
+            <div class="card-body">
+              <h3 class="card-text">Golden Gate Ventures</h3>
+            </div>
+          </div>
+          <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Units Available</div>
+            <div class="card-body">
+              <h3 class="card-text">3,000</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- /.card -->
+
+        <!-- /.card -->
+
+      </div>
+
+
         <!-- /.container-fluid -->
 
       </div>
@@ -480,22 +385,25 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="{% static "/dashboard/vendor/jquery/jquery.min.js" %}"></script>
-  <script src="{% static "/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static "general_fund/vendor/jquery/jquery.min.js" %}"></script>
+  <script src="{% static "general_fund/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+  <script src="{% static "general_fund/js/demo/chart-area-demo.js" %}"></script>
+  <script src="{% static "general_fund/vendor/jquery/jquery.min.js" %}"></script>
+  <script src="{% static "general_fund/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="{% static "/dashboard/vendor/jquery-easing/jquery.easing.min.js" %}"></script>
+  <script src="{% static "general_fund/vendor/jquery-easing/jquery.easing.min.js" %}"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="{% static "/dashboard/js/sb-admin-2.min.js" %}"></script>
+  <script src="{% static "general_fund/js/sb-admin-2.min.js" %}"></script>
 
   <!-- Page level plugins -->
-  <script src="{% static "/dashboard/vendor/chart.js/Chart.min.js" %}"></script>
+  <script src="{% static "general_fund/vendor/chart.js/Chart.min.js" %}"></script>
 
   <!-- Page level custom scripts -->
-  <script src="{% static "/dashboard/js/demo/chart-area-demo.js" %}"></script>
-  <script src="{% static "/dashboard/js/demo/chart-pie-demo.js" %}"></script>
+  <script src="{% static "general_fund/js/demo/chart-area-demo.js" %}"></script>
+  <script src="{% static "general_fund/js/demo/chart-pie-demo.js" %}"></script>
 
 </body>
 
