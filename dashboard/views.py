@@ -10,15 +10,15 @@ class DashboardView(TemplateView):
 
 
 class GeneralFundView(TemplateView):
-    template_name = "general_fund/index.html"
+    template_name = "dashboard/general_fund.html"
 
 
 class TechFundView(TemplateView):
-    template_name = "tech_fund/index.html"
+    template_name = "dashboard/tech_fund.html"
 
 
 class ChooseFundView(TemplateView):
-    template_name = "choose_fund/index.html"
+    template_name = "dashboard/choose_fund.html"
 
 
 class FundInvestView(TemplateView):
