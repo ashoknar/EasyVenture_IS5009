@@ -23,6 +23,7 @@ from django.conf import settings
 urlpatterns = [
     path('dashboard/', views.DashboardView.as_view(), name='dashboard'),
     path('dashboard_new/', views.DashboardNewView.as_view(), name='dashboard-new'),
+    path('dashboard_sell/', views.DashboardSellView.as_view(), name='dashboard-sell'),
     path('choose_fund/', views.ChooseFundView.as_view(), name='choose_fund'),
     path('general_fund/', views.GeneralFundView.as_view(), name='general_fund'),
     path('health_fund/', views.HealthFundView.as_view(), name='health_fund'),

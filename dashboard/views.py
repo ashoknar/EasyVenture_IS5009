@@ -77,3 +77,7 @@ class FundSellOTPView(TemplateView):
 class FundSellSuccessView(TemplateView):
     template_name = 'dashboard/fund-sell-success.html'
 
+
+class DashboardSellView(TemplateView):
+    template_name = 'dashboard/index-sell.html'
+
