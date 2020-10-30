@@ -46,6 +46,13 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
+      
+      <!-- Nav Item - Invest -->
+      <li class="nav-item">
+        <a class="nav-link" href="/choose_fund">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Portfolio</span></a>
+      </li>
 
       <!-- Nav Item - Invest -->
       <li class="nav-item">
@@ -285,7 +292,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Earnings (Monthly)</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Earnings (Annual)</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                     </div>
                     <div class="col-auto">
@@ -302,8 +309,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Invested Amount</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$200,000</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -361,7 +368,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Holdings Overview</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -377,8 +384,8 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
+                  <div class="chart-bar">
+                    <canvas id="myBarChart"></canvas>
                   </div>
                 </div>
               </div>
@@ -396,8 +403,10 @@
                   <h6 class="m-0 font-weight-bold text-primary">General Venture Fund</h6>
                 </div>
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">Holdings: $100,000 <span class="float-right text-success">+20%</span></h4>
-                  <h4 class="small font-weight-bold">Market Value: $120,000 </h4>
+                  <h4 class="small font-weight-bold">Holdings: $100,000 <span class="float-right text-success">+40%</span></h4>
+                  <h4 class="small font-weight-bold">Market Value: $140,000 </h4>
+                  <input type="button" class="btn btn-danger btn-circle" style="float:right;" value="Sell"> 
+                  <input type="button" class="btn btn-success btn-circle" style="float:right;" value="Buy">
                 </div>
               </div>
             </div>
@@ -412,6 +421,8 @@
                 <div class="card-body">
                   <h4 class="small font-weight-bold">Holdings: $100,000 <span class="float-right text-gray-300">-</span></h4>
                   <h4 class="small font-weight-bold">Market Value: $100,000 </h4>
+                  <input type="button" class="btn btn-danger btn-circle" style="float:right;" value="Sell"> 
+                  <input type="button" class="btn btn-success btn-circle" style="float:right;" value="Buy">
                 </div>
               </div>
             </div>
@@ -479,6 +490,7 @@
   <!-- Page level custom scripts -->
   <script src="{% static "/dashboard/js/demo/chart-area-demo.js" %}"></script>
   <script src="{% static "/dashboard/js/demo/chart-pie-demo.js" %}"></script>
+  <script src="{% static "/dashboard/js/demo/chart-bar-demo.js" %}"></script>
 
 </body>
 
