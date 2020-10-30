@@ -60,3 +60,20 @@ class FundSuccessView(TemplateView):
 
 class DashboardNewView(TemplateView):
     template_name = "dashboard/index-new.html"
+
+
+class FundSellView(TemplateView):
+    template_name = 'dashboard/fund-sell-cash.html'
+
+
+class FundSellSummaryView(TemplateView):
+    template_name = 'dashboard/fund-sell-cash-summary.html'
+
+
+class FundSellOTPView(TemplateView):
+    template_name = 'dashboard/fund-sell-otp.html'
+
+
+class FundSellSuccessView(TemplateView):
+    template_name = 'dashboard/fund-sell-success.html'
+

@@ -34,5 +34,9 @@ urlpatterns = [
     path('fund_invest/cash/otp/', views.FundOTPView.as_view(), name='fund-invest-otp'),
     path('fund_invest/cash/success/', views.FundSuccessView.as_view(), name='fund-invest-success'),
     path('fund_invest/crypto/', views.FundCryptoView.as_view(), name='fund-invest-crypto'),
+    path('fund_sell/cash/', views.FundSellView.as_view(), name='fund-sell-cash'),
+    path('fund_sell/cash/summary/', views.FundSellSummaryView.as_view(), name='fund-sell-cash-summary'),
+    path('fund_sell/cash/otp/', views.FundSellOTPView.as_view(), name='fund-sell-cash-otp'),
+    path('fund_sell/cash/success/', views.FundSellSuccessView.as_view(), name='fund-sell-cash-success'),
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
