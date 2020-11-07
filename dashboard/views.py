@@ -4,6 +4,7 @@ from django.shortcuts import render
 # import boto3
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
+from django.shortcuts import get_object_or_404, render
 
 
 class DashboardView(TemplateView):
@@ -81,3 +82,7 @@ class FundSellSuccessView(TemplateView):
 class DashboardSellView(TemplateView):
     template_name = 'dashboard/index-sell.html'
 
+
+def dashboard(request):
+    question = 'Stre'
+    return render(request, 'dashboard/index.html', {'question': question})
