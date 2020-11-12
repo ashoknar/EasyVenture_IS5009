@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-# import boto3
+import boto3
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404, render
@@ -86,3 +86,28 @@ class DashboardSellView(TemplateView):
 def dashboard(request):
     question = 'Stre'
     return render(request, 'dashboard/index.html', {'question': question})
+    
+    
+def choose_fund(request):
+    ## Get all items from a table
+    client = boto3.client('dynamodb')
+    response = client.scan(
+        TableName='funds'
+    )
+    
+    items = response.get("Items")
+    for item in items:
+        item["description"] = item.get("description").get("S")
+        item["name"] = item.get("name").get("S")
+        item["price"] = item.get("price").get("S")
+        item["ticker"] = item.get("ticker").get("S")
+        item["holding_period"] = item.get("holding_period").get("S")
+        item["management_firm"] = item.get("management_firm").get("S")
+        item["fund_target"] = item.get("fund_target").get("S")
+        item["available_units"] = item.get("available_units").get("S")
+        item["rating"] = item.get("rating").get("S")
+    print (items)
+    context = {
+        'funds': items
+    }
+    return render(request, 'dashboard/choose_fund.html', context)

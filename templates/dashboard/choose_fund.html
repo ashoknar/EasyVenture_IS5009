@@ -39,7 +39,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="../general_fund/index.html">
+        <a class="nav-link" href="../dashboard">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -291,90 +291,116 @@
       <div class="col-lg-9">
         <br>
         <div class="row">
-
+          
+          {% for fund in funds %}
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="/general_fund">General Venture Fund</a>
+                  <a href="/{{ fund.ticker }}">{{ fund.name }}</a>
                 </h4>
-                <h5>$325.85/unit</h5>
+                <h5>${{ fund.price }}/unit</h5>
               </div>
               <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Technology Venture Fund</a>
-                </h4>
-                <h5>$220.00/unit</h5>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Technology Venture Fund Stage 2</a>
-                </h4>
-                <h5>$514.99</h5>
-              </div>
-              <div class="card-footer">
+                {% if fund.rating == '1' %}
+                <small class="text-muted">&#9733; &#9734; &#9734; &#9734; &#9734;</small>
+                {% elif fund.rating == '2' %}
+                <small class="text-muted">&#9733; &#9733; &#9734; &#9734; &#9734;</small>
+                {% elif fund.rating == '3' %}
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9734; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">General Venture Fund Stage 2</a>
-                </h4>
-                <h5>$884.32</h5>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="/health_fund">Healthcare Venture Fund </a>
-                </h4>
-                <h5>$333.32</h5>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Healthcare Venture Fund Stage 2</a>
-                </h4>
-                <h5>$863.32</h5>
-              </div>
-              <div class="card-footer">
+                {% elif fund.rating == '4' %}
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                {% elif fund.rating == '5' %}
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+                {% endif %}
               </div>
             </div>
           </div>
+          {% endfor %}
+
+          <!--<div class="col-lg-4 col-md-6 mb-4">-->
+          <!--  <div class="card h-100">-->
+          <!--    <div class="card-body">-->
+          <!--      <h4 class="card-title">-->
+          <!--        <a href="/general_fund">General Venture Fund</a>-->
+          <!--      </h4>-->
+          <!--      <h5>$325.85/unit</h5>-->
+          <!--    </div>-->
+          <!--    <div class="card-footer">-->
+          <!--      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <!--<div class="col-lg-4 col-md-6 mb-4">-->
+          <!--  <div class="card h-100">-->
+          <!--    <div class="card-body">-->
+          <!--      <h4 class="card-title">-->
+          <!--        <a href="#">Technology Venture Fund</a>-->
+          <!--      </h4>-->
+          <!--      <h5>$220.00/unit</h5>-->
+          <!--    </div>-->
+          <!--    <div class="card-footer">-->
+          <!--      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <!--<div class="col-lg-4 col-md-6 mb-4">-->
+          <!--  <div class="card h-100">-->
+          <!--    <div class="card-body">-->
+          <!--      <h4 class="card-title">-->
+          <!--        <a href="#">Technology Venture Fund Stage 2</a>-->
+          <!--      </h4>-->
+          <!--      <h5>$514.99</h5>-->
+          <!--    </div>-->
+          <!--    <div class="card-footer">-->
+          <!--      <small class="text-muted">&#9733; &#9733; &#9733; &#9734; &#9734;</small>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <!--<div class="col-lg-4 col-md-6 mb-4">-->
+          <!--  <div class="card h-100">-->
+          <!--    <div class="card-body">-->
+          <!--      <h4 class="card-title">-->
+          <!--        <a href="#">General Venture Fund Stage 2</a>-->
+          <!--      </h4>-->
+          <!--      <h5>$884.32</h5>-->
+          <!--    </div>-->
+          <!--    <div class="card-footer">-->
+          <!--      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9733;</small>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <!--<div class="col-lg-4 col-md-6 mb-4">-->
+          <!--  <div class="card h-100">-->
+          <!--    <div class="card-body">-->
+          <!--      <h4 class="card-title">-->
+          <!--        <a href="/health_fund">Healthcare Venture Fund </a>-->
+          <!--      </h4>-->
+          <!--      <h5>$333.32</h5>-->
+          <!--    </div>-->
+          <!--    <div class="card-footer">-->
+          <!--      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9733;</small>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <!--<div class="col-lg-4 col-md-6 mb-4">-->
+          <!--  <div class="card h-100">-->
+          <!--    <div class="card-body">-->
+          <!--      <h4 class="card-title">-->
+          <!--        <a href="#">Healthcare Venture Fund Stage 2</a>-->
+          <!--      </h4>-->
+          <!--      <h5>$863.32</h5>-->
+          <!--    </div>-->
+          <!--    <div class="card-footer">-->
+          <!--      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
 
         </div>
         <!-- /.row -->
