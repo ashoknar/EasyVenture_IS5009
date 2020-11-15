@@ -30,7 +30,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
         <img src="{% static "/dashboard/img/logo_white.png" %}"alt="EASYVENTURE">
       </a>
 
@@ -39,7 +39,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/dashboard">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -56,7 +56,7 @@
 
       <!-- Nav Item - Invest -->
       <li class="nav-item active">
-        <a class="nav-link" href="invest.html">
+        <a class="nav-link" href="/choose_fund">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Invest</span></a>
       </li>
@@ -292,7 +292,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">General Venture Fund</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">{{ profile.fund.name }}</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -302,11 +302,11 @@
                     <label for="amount">Currency:</label>
                     <label for="amount" style="text-align: right;">Cash</label><br>
                     <label for="amount">Current value:</label>
-                    <label for="amount">$140,000</label><br>
+                    <label for="amount">{{ profile.fund.market_value }}</label><br>
                     <label for="amount">Current holding:</label>
-                    <label for="amount">430 units</label><br>
-                    <label for="amount">Sell Quantity: 123 units</label><br>
-                    <label for="amount">Sell value: $40,000</label><br>
+                    <label for="amount">{{ profile.fund.units }}</label><br>
+                    <label for="amount">Sell Quantity: {{ profile.amount }}</label><br>
+                    <label for="amount">Sell value: ${{ profile.fund.value }}</label><br>
                     <input type="button" class="btn btn-primary btn-user" value="Cancel" style="width:100px">
                     <input type="submit" class="btn btn-primary btn-user" style="width:100px" onclick="window.location.href='/fund_sell/cash/otp'">
                   <!-- </form> -->

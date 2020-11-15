@@ -30,7 +30,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
         <img src="{% static "/dashboard/img/logo_white.png" %}"alt="EASYVENTURE">
       </a>
 
@@ -297,7 +297,7 @@
             <div class="card h-100">
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="/{{ fund.ticker }}">{{ fund.name }}</a>
+                  <a href="/fund/?{{ fund.ticker }}">{{ fund.name }}</a>
                 </h4>
                 <h5>${{ fund.price }}/unit</h5>
               </div>

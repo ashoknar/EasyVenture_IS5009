@@ -30,7 +30,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
         <img src="{% static "/dashboard/img/logo_white.png" %}"alt="EASYVENTURE">
       </a>
 
@@ -39,7 +39,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/dashboard">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -56,7 +56,7 @@
 
       <!-- Nav Item - Invest -->
       <li class="nav-item active">
-        <a class="nav-link" href="invest.html">
+        <a class="nav-link" href="/choose_fund">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Invest</span></a>
       </li>
@@ -292,24 +292,26 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Healthcare Venture Fund</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">{{ fund.name }}</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <!-- <form method="POST"> -->
+                   <form method="POST" action="/fund_invest/cash/summary/?{{ fund.ticker }}">
+                    {% csrf_token %} 
                     <input type="button" class="btn btn-success btn-user" style="width:100px" value="Cash">
-                    <input type="button" class="btn btn-secondary btn-user" style="width:100px" value="Crypto" onclick="window.location.href='/fund_invest/crypto'"><br>
+                    <input type="button" class="btn btn-secondary btn-user" style="width:100px" value="Crypto" onclick="window.location.href='/fund_invest/crypto/?{{ fund.ticker }}'"><br>
                     <label for="amount">Currency:</label>
                     <label for="amount" style="text-align: right;">Cash</label><br>
                     <label for="amount">Wallet balance:</label>
-                    <label for="amount">$100,000</label><br>
+                    <label for="amount">{{ profile.wallet }}</label><br>
                     <label for="amount">Investment amount:</label>
-                    <input type="text" id="amount"><br>
+                    <input type="text" id="amount" name="amount"><br>
                     <label for="amount">Transaction fee:</label>
                     <label for="amount">1%</label><br>
                     <input type="button" class="btn btn-primary btn-user" value="Cancel" style="width:100px">
-                    <input type="submit" class="btn btn-primary btn-user" style="width:100px" onclick="window.location.href='/fund_invest/cash/summary'">
-                  <!-- </form> -->
+                    <input type="submit" class="btn btn-primary btn-user" style="width:100px" onclick="window.location.href='/fund_invest/cash/summary/?{{ fund.ticker }}'">
+                    <input type="hidden" name="type" value="cash">
+                   </form> 
                 </div>
               </div>
             </div>
@@ -379,7 +381,18 @@
   <!-- Page level custom scripts -->
   <script src="{% static "general_fund/js/demo/chart-area-demo.js" %}"></script>
   <script src="{% static "general_fund/js/demo/chart-pie-demo.js" %}"></script>
-
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src=""></script>
+<!--  $("#btn").on("click", function (){ input_val  = $("#inputid").val(); $.ajax({-->
+<!--  type: "POST",-->
+<!--  url: url,-->
+<!--  data: data,-->
+<!--  success: success,-->
+<!--  dataType: dataType-->
+<!--}); });-->
 </body>
 
 </html>

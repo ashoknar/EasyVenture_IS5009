@@ -30,7 +30,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
         <img src="{% static "/dashboard/img/logo_white.png" %}"alt="EASYVENTURE">
       </a>
 
@@ -39,7 +39,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="../general_fund/index.html">
+        <a class="nav-link" href="/dashboard">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -56,7 +56,7 @@
 
       <!-- Nav Item - Invest -->
       <li class="nav-item active">
-        <a class="nav-link" href="invest.html">
+        <a class="nav-link" href="/choose_fund">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Invest</span></a>
       </li>
@@ -292,7 +292,7 @@
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Healthcare Venture Fund</h6>
+              <h6 class="m-0 font-weight-bold text-primary">{{ fund.name }}</h6>
             </div>
 
           <div class="card-body">
@@ -301,24 +301,35 @@
             </div>
           </div>
           <div class="card-body">
-            <h3 class="card-title">Healthcare Venture Fund</h3>
-              <p><input type="button" value="Invest" class="btn btn-primary btn-user" onclick="window.location.href='/fund_invest/cash/'" style="width:100px"></p>
-            <h4>$333.32/unit</h4>
-            <p class="card-text">Investment in Healthcare sector focusing on early stage seed to series A. The fund focuses largely on investing in South East Asia market with potential investment in other APAC regions.</p>
-            Rating: <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+            <h3 class="card-title">{{ fund.name }}</h3>
+              <p><input type="button" value="Invest" class="btn btn-primary btn-user" onclick="window.location.href='/fund_invest/?{{ fund.ticker }}'" style="width:100px"></p>
+            <h4>${{ fund.price }}/unit</h4>
+            <p class="card-text">{{ fund.description }}</p>
+            Rating: 
+            {% if fund.rating == '1' %}
+            <span class="text-warning">&#9733; &#9734; &#9734; &#9734; &#9734;</span>
+            {% elif fund.rating == '2' %}
+            <span class="text-warning">&#9733; &#9733; &#9734; &#9734; &#9734;</span>
+            {% elif fund.rating == '3' %}
+            <span class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</span>
+            {% elif fund.rating == '4' %}
+            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+            {% elif fund.rating == '5' %}
+            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+            {% endif %}
           </div>
 
         <div class="card-deck">
           <div class="card border-primary mb-3" style="max-width: 18rem;">
             <div class="card-header">Fund Target</div>
             <div class="card-body">
-              <h3 class="card-text">$5,000,000</h3>
+              <h3 class="card-text">{{ fund.fund_target }}</h3>
             </div>
           </div>
           <div class="card border-primary mb-3" style="max-width: 18rem;">
             <div class="card-header">Holding Period</div>
             <div class="card-body">
-              <h3 class="card-text">3 Years</h3>
+              <h3 class="card-text">{{ fund.holding_period }}</h3>
             </div>
           </div>
         </div>
@@ -326,13 +337,13 @@
           <div class="card border-primary mb-3" style="max-width: 18rem;">
             <div class="card-header">Management Firm</div>
             <div class="card-body">
-              <h3 class="card-text">Golden Gate Ventures</h3>
+              <h3 class="card-text">{{ fund.management_firm }}</h3>
             </div>
           </div>
           <div class="card border-primary mb-3" style="max-width: 18rem;">
             <div class="card-header">Units Available</div>
             <div class="card-body">
-              <h3 class="card-text">3,000</h3>
+              <h3 class="card-text">{{ fund.available_units }}</h3>
             </div>
           </div>
         </div>

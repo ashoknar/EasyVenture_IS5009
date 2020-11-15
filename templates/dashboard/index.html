@@ -30,7 +30,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
         <img src="{% static "/dashboard/img/logo_white.png" %}"alt="EASYVENTURE">
       </a>
 
@@ -39,7 +39,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/dashboard">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -293,7 +293,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${{ profile.earnings }}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -310,7 +310,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Invested Amount</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$200,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${{ profile.invested }}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -395,37 +395,61 @@
           <!-- Content Row -->
           <div class="row">
 
+            {% for fund in profile.funds %}
             <!-- Content Column -->
             <div class="col-lg-3 mb-4">
               <!-- Project Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">General Venture Fund</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">{{ fund.name }}</h6>
                 </div>
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">Holdings: 430 units <span class="float-right text-success">+40%</span></h4>
-                  <h4 class="small font-weight-bold">Market Value: $140,000 </h4>
-                  <input type="button" class="btn btn-danger btn-circle" style="float:right;" value="Sell" onclick="window.location.href='/fund_sell/cash'">
-                  <input type="button" class="btn btn-success btn-circle" style="float:right;" value="Buy">
+                  <h4 class="small font-weight-bold">Holdings: {{ fund.units }} units
+                  {% if '+' in fund.profit_percent %}
+                  <span class="float-right text-success">{{ fund.profit_percent }}</span></h4>
+                  {% elif '-' == fund.profit_percent %}
+                  <span class="float-right text-gray-300">{{ fund.profit_percent }}</span></h4>
+                  {% else %}
+                  <span class="float-right text-danger">{{ fund.profit_percent }}</span></h4>
+                  {% endif %}
+                  <h4 class="small font-weight-bold">Market Value: ${{ fund.market_value }}</h4>
+                  <input type="button" class="btn btn-danger btn-circle" style="float:right;" value="Sell" onclick="window.location.href='/fund_sell/cash/?{{ fund.ticker }}'">
+                  <input type="button" class="btn btn-success btn-circle" style="float:right;" value="Buy" onclick="window.location.href='/fund_invest/cash/?{{ fund.ticker }}'">
                 </div>
               </div>
             </div>
+            {% endfor %}
+            <!-- Content Column -->
+            <!--<div class="col-lg-3 mb-4">-->
+              <!-- Project Card Example -->
+            <!--  <div class="card shadow mb-4">-->
+            <!--    <div class="card-header py-3">-->
+            <!--      <h6 class="m-0 font-weight-bold text-primary">General Venture Fund</h6>-->
+            <!--    </div>-->
+            <!--    <div class="card-body">-->
+            <!--      <h4 class="small font-weight-bold">Holdings: 430 units <span class="float-right text-success">+40%</span></h4>-->
+            <!--      <h4 class="small font-weight-bold">Market Value: $140,000 </h4>-->
+            <!--      <input type="button" class="btn btn-danger btn-circle" style="float:right;" value="Sell" onclick="window.location.href='/fund_sell/cash'">-->
+            <!--      <input type="button" class="btn btn-success btn-circle" style="float:right;" value="Buy">-->
+            <!--    </div>-->
+            <!--  </div>-->
+            <!--</div>-->
 
             <!-- Content Column -->
-            <div class="col-lg-3 mb-4">
+            <!--<div class="col-lg-3 mb-4">-->
               <!-- Project Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Technology Venture Fund</h6>
-                </div>
-                <div class="card-body">
-                  <h4 class="small font-weight-bold">Holdings: 600 units<span class="float-right text-gray-300">-</span></h4>
-                  <h4 class="small font-weight-bold">Market Value: $100,000 </h4>
-                  <input type="button" class="btn btn-danger btn-circle" style="float:right;" value="Sell"> 
-                  <input type="button" class="btn btn-success btn-circle" style="float:right;" value="Buy">
-                </div>
-              </div>
-            </div>
+            <!--  <div class="card shadow mb-4">-->
+            <!--    <div class="card-header py-3">-->
+            <!--      <h6 class="m-0 font-weight-bold text-primary">Technology Venture Fund</h6>-->
+            <!--    </div>-->
+            <!--    <div class="card-body">-->
+            <!--      <h4 class="small font-weight-bold">Holdings: 600 units<span class="float-right text-gray-300">-</span></h4>-->
+            <!--      <h4 class="small font-weight-bold">Market Value: $100,000 </h4>-->
+            <!--      <input type="button" class="btn btn-danger btn-circle" style="float:right;" value="Sell"> -->
+            <!--      <input type="button" class="btn btn-success btn-circle" style="float:right;" value="Buy">-->
+            <!--    </div>-->
+            <!--  </div>-->
+            <!--</div>-->
 
           </div>
         </div>
