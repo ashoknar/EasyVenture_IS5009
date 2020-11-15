@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-import boto3
+import boto3, copy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404, render
@@ -135,7 +135,6 @@ def choose_fund(request):
     response = client.scan(
         TableName='funds'
     )
-    print(request)
     items = response.get("Items")
     for item in items:
         item["description"] = item.get("description").get("S")
@@ -147,7 +146,6 @@ def choose_fund(request):
         item["fund_target"] = item.get("fund_target").get("S")
         item["available_units"] = item.get("available_units").get("S")
         item["rating"] = item.get("rating").get("S")
-    print (items)
     context = {
         'funds': items
     }
@@ -281,6 +279,7 @@ def fund_summary(request):
         'profile': item,
         'fund': fund_updated
     }
+    fund_list2 = copy.deepcopy(fund_list)
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('user_portfolio')
     if item['type'] == 'cash':
@@ -290,7 +289,7 @@ def fund_summary(request):
             },
             UpdateExpression='SET invested = :val1',
             ExpressionAttributeValues={
-                ':val1': str( int(item['amount']) + int(item['invested']) )
+                ':val1': str(float(item['invested']) + float(item['amount']) )
             }
         )
         table.update_item(
@@ -299,30 +298,65 @@ def fund_summary(request):
             },
             UpdateExpression='SET wallet = :val1',
             ExpressionAttributeValues={
-                ':val1': str(int(item['wallet']) - int(item['amount']) )
+                ':val1': str(float(item['wallet']) -(float(item['amount']) ))
+            }
+        )
+        print("if updated")
+        
+        print(fund_list2)
+        flag = True
+        element = -1
+        count = 0
+        for fund in fund_list2:
+            if fund.get("M").get("ticker").get("S") == query:
+                flag = False
+                fund["M"]["units"]["S"] = str(int(fund.get("M").get("units").get("S")) - ( float(item['amount']) /  float(fund["M"]["unit_price"]["S"])))
+                fund["M"]["market_value"]["S"] = str(float(fund["M"]["units"]["S"]) * float(fund["M"]["unit_price"]["S"]))
+            count = count + 1
+        if flag:
+            fund = copy.deepcopy(fund_list2[0])
+            fund["M"]["ticker"]["S"] = query
+            fund["M"]["name"]["S"] = fund_updated["name"]
+            fund["M"]["units"]["S"] = str(int(int(fund.get("M").get("units").get("S")) - ( float(item['amount']) /  float(fund["M"]["unit_price"]["S"]))))
+            fund["M"]["market_value"]["S"] = str(int(float(fund["M"]["units"]["S"]) * float(fund["M"]["unit_price"]["S"])))
+            fund_list2.append(fund)
+        response = client.update_item(
+            TableName='user_portfolio',
+            Key={
+                'email': {
+                    'S': 'valerie_chua@email.com',
+                }
+            },
+            AttributeUpdates={
+                'funds': {
+                    'Value': {
+                        'L': fund_list2
+                    },
+                    'Action': 'PUT'
+                }
             }
         )
     else:
-        eth_val = 300
-        curr_val = int(item['amount']) * eth_val
+        curr_val = int(item['amount']) * int(fund_updated['unit_price'])
         table.update_item(
             Key={
                 'email': 'valerie_chua@email.com'
             },
             UpdateExpression='SET invested = :val1',
             ExpressionAttributeValues={
-                ':val1': str( curr_val + int(item['invested']) )
+                ':val1': str(int(item['invested']) - curr_val )
             }
         )
         table.update_item(
             Key={
                 'email': 'valerie_chua@email.com'
             },
-            UpdateExpression='SET crypto = :val1',
+            UpdateExpression='SET wallet = :val1',
             ExpressionAttributeValues={
-                ':val1': str(int(item['crypto']) - int(item['amount']) )
+                ':val1': str(float(item['wallet']) - float(item['amount']) )
             }
         )
+        print("else updated")
     return render(request, 'dashboard/fund-invest-cash-summary.html', context)
     
 def fund_sell(request):
@@ -370,8 +404,9 @@ def fund_sell_summary(request):
     client = boto3.client('dynamodb')
     query = request.GET.items()
     for item in query:
+        print(item)
         query = item[0]
-    print(query)
+    # print(query)
     response = client.get_item(
         TableName='user_portfolio',
         Key={
@@ -387,13 +422,14 @@ def fund_sell_summary(request):
     item['wallet'] = item.get("wallet").get("S")
     item['amount'] = request.POST.get('amount')
     item['type'] = request.POST.get('type')
-    print(item)
+    # print(item)
     fund_list = item.get("funds").get("L")
+    fund_list2 = copy.deepcopy(fund_list)
     
     for fund in fund_list:
-        print("Ticker", fund.get("M").get("ticker").get("S"))
-        print("Q", query)
-        print(fund.get("M").get("ticker").get("S") == query)
+        # print("Ticker", fund.get("M").get("ticker").get("S"))
+        # print("Q", query)
+        # print(fund.get("M").get("ticker").get("S") == query)
         if fund.get("M").get("ticker").get("S") == query:
             fund_updated = {
                 "name": fund.get("M").get("name").get("S"),
@@ -404,12 +440,26 @@ def fund_sell_summary(request):
                 "unit_price": fund.get("M").get("unit_price").get("S"),
             }
     value = int(fund_updated["unit_price"]) * int(item["amount"])
-    print(value)
+    # print(value)
     fund_updated["value"] = str(value)
     item["fund"] = fund_updated
     context = {
         'profile': item
     }
+    
+    response2 = client.get_item(
+        TableName='funds',
+        Key={
+            'ticker': { # ticket is primary key attribute name
+                'S': query, # S represents string, HEALTHVD is the primary key value
+            }
+        }
+    )
+    
+    fund_item = response2.get("Item")
+    print(fund_item.get("price").get("S"))
+    print('hello2')
+    
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('user_portfolio')
     if item['type'] == 'cash':
@@ -419,7 +469,7 @@ def fund_sell_summary(request):
             },
             UpdateExpression='SET invested = :val1',
             ExpressionAttributeValues={
-                ':val1': str( int(item['invested']) - int(item['amount']) )
+                ':val1': str(float(item['invested']) - (float(item['amount']) * float(fund_item.get("price").get("S"))))
             }
         )
         table.update_item(
@@ -428,7 +478,37 @@ def fund_sell_summary(request):
             },
             UpdateExpression='SET wallet = :val1',
             ExpressionAttributeValues={
-                ':val1': str(int(item['wallet']) + int(item['amount']) )
+                ':val1': str(float(item['wallet']) + (float(item['amount']) * float(fund_item.get("price").get("S"))))
+            }
+        )
+        print("if updated")
+        
+        print(fund_list2)
+        element = -1
+        count = 0
+        for fund in fund_list2:
+            if fund.get("M").get("ticker").get("S") == query:
+                fund["M"]["units"]["S"] = str(int(fund.get("M").get("units").get("S")) - int(item['amount']))
+                fund["M"]["market_value"]["S"] = str(float(fund["M"]["units"]["S"]) * float(fund["M"]["unit_price"]["S"]))
+                if fund["M"]["units"]["S"] == '0':
+                    element = count
+            count = count + 1
+        if element > -1:
+            fund_list2.remove(element)
+        response = client.update_item(
+            TableName='user_portfolio',
+            Key={
+                'email': {
+                    'S': 'valerie_chua@email.com',
+                }
+            },
+            AttributeUpdates={
+                'funds': {
+                    'Value': {
+                        'L': fund_list2
+                    },
+                    'Action': 'PUT'
+                }
             }
         )
     else:
@@ -448,9 +528,10 @@ def fund_sell_summary(request):
             },
             UpdateExpression='SET wallet = :val1',
             ExpressionAttributeValues={
-                ':val1': str(int(item['wallet']) - int(item['amount']) )
+                ':val1': str(float(item['wallet']) - float(item['amount']) )
             }
         )
+        print("else updated")
     return render(request, 'dashboard/fund-sell-cash-summary.html', context)
     
 
