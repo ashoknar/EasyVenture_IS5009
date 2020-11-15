@@ -22,9 +22,10 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
+    path('', views.dashboard, name='dashboard'),
     path('dashboard/', views.dashboard, name='dashboard'),
-    path('dashboard_new/', views.DashboardNewView.as_view(), name='dashboard-new'),
-    path('dashboard_sell/', views.DashboardSellView.as_view(), name='dashboard-sell'),
+    path('dashboard_new/', views.dashboard, name='dashboard-new'),
+    path('dashboard_sell/', views.dashboard, name='dashboard-sell'),
     path('choose_fund/', views.choose_fund, name='choose_fund'),
     path('general_fund/', views.GeneralFundView.as_view(), name='general_fund'),
     # path('HEALTHVD/', views.HEALTHVD, name='health_fund'),
